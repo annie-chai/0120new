@@ -21,3 +21,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+from django.contrib.auth.views import LoginView, LogoutView
+
+login_params = {
+    'template_name': 'users/login.html',
+    'redirect_authenticated_user': True,
+}
+
+urlpatterns = [
+    ...
+    path('login/', LoginView.as_view(**login_params), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    ...
+]
